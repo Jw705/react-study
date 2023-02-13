@@ -55,9 +55,7 @@ function Create(props) {
 }
 
 function Update(props) {
-  const [title, setTitle] = useState(props.title);
-  const [body, setBody] = useState(props.body);
-
+  //Create와 거의 똑같음
   return <article>    
     <h2>Update</h2> 
     <form onSubmit={event=>{
@@ -66,12 +64,8 @@ function Update(props) {
       const body = event.target.body.value;
       props.onUpdate(title,body)
     }}>
-      <p><input type="text" name="title" placeholder="title" value={title} onChange={event=>{
-        setTitle(event.target.value);
-      }}/></p>
-      <p><textarea name="body" placeholder="body" value={body} onChange={event=>{
-        setBody(event.target.value);
-      }}></textarea></p>
+      <p><input type="text" name="title" placeholder="title" value={props.title}/></p>
+      <p><textarea name="body" placeholder="body" value={props.body}></textarea></p>
       <p><input type="submit" value="Update"/></p>     
     </form>
   </article>
@@ -132,16 +126,6 @@ function App() {
       }
     }
     content = <Update title={title} body={body} onUpdate={(title,body)=>{
-      const newTopics = [...topics]
-      const updatedTopic = {id:id, title:title, body:body}
-      for(let i=0;i<newTopics.length;i++){
-        if(newTopics[i].id===id){
-          newTopics[i] = updatedTopic;
-          break;
-        }
-      }
-      setTopics(newTopics);
-      setMode('READ');
 
     }}></Update>    
   }
