@@ -40,14 +40,16 @@ function Create(props) {
   //onSubmit : submit 버튼 클릭했을때 폼 태그에서 발생하는 이벤트
   //event.target = <form> 태그
   return <article>    
-    <h2>Create</h2>
+    <h2>글 작성</h2>
     <form onSubmit={event=>{
       event.preventDefault();
       const title = event.target.title.value;
       const body = event.target.body.value;
       props.onCreate(title,body)
     }}>
+      <p>제목</p>
       <p><input type="text" name="title" placeholder="title"/></p>
+      <p>내용</p>
       <p><textarea name="body" placeholder="body"></textarea></p>
       <p><input type="submit" value="Create"/></p>     
     </form>
@@ -59,16 +61,18 @@ function Update(props) {
   const [body, setBody] = useState(props.body);
 
   return <article>    
-    <h2>Update</h2> 
+    <h2>글 수정</h2> 
     <form onSubmit={event=>{
       event.preventDefault();
       const title = event.target.title.value;
       const body = event.target.body.value;
       props.onUpdate(title,body)
     }}>
+      <p>제목</p>
       <p><input type="text" name="title" placeholder="title" value={title} onChange={event=>{
         setTitle(event.target.value);
       }}/></p>
+      <p>내용</p>
       <p><textarea name="body" placeholder="body" value={body} onChange={event=>{
         setBody(event.target.value);
       }}></textarea></p>
@@ -107,12 +111,13 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
+    //<a class="btn" href="/update?id=${title}">
     contextControl = <>
-      <li><a href={'/update/' + id} onClick={event => {
+      <a class="btn" href={'/update/' + id} onClick={event => {
         event.preventDefault();
         setMode('UPDATE');
-      }}>Update</a></li>
-      <li><input type="button" value="delete" onClick={()=>{
+      }}>글 수정</a>
+      <input class="btn" type="button" value="글 삭제" onClick={()=>{
         const newTopics = []
         for(let i=0;i<topics.length;i++){
           if(topics[i].id !== id){
@@ -122,7 +127,7 @@ function App() {
         }
         setTopics(newTopics);
         setMode('WELCOME');
-      }}/></li>
+      }}/>
     </>
   }
   else if (mode === 'CREATE') {
@@ -160,26 +165,35 @@ function App() {
   }
 
   return (
-    <div>
-      <Header title="WEB" onChangeMode={()=>{
+    <>
+      <Header title="React 게시판 구현" onChangeMode={() => {
         setMode('WELCOME');
       }}></Header>
-      <Nav topics={topics} onChangeMode={(_id)=>{
-        setMode('READ');
-        setId(_id);
-      }}></Nav>
-      {content}
 
-      <ul>
-        <li>
-          <a href="/create" onClick={event => {
-            event.preventDefault();
-            setMode('CREATE');
-          }}>Create</a>
-        </li>
-        {contextControl}
-      </ul>      
-    </div>
+      <div class="background">
+        <div class="titlebar">글 목록</div>
+        <div class="content">
+
+          <Nav topics={topics} onChangeMode={(_id) => {
+            setMode('READ');
+            setId(_id);
+          }}></Nav>
+        </div>
+
+        <div class="titlebar">글 내용</div>
+        <div class="content">
+          {content}
+            <div class="btncover">
+              <a class="btn" href="/create" onClick={event => {
+                event.preventDefault();
+                setMode('CREATE');
+              }}>글 작성</a>
+              {contextControl}
+            </div>
+        </div>
+
+      </div>
+    </>
   );
 }
 

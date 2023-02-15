@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+}
+        
+.background {
+    background-color: white;
+    height: auto;
+    width: 450px;
+    box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+}
+
+.titlebar {
+    background-color: #F9F9F9;
+    font-weight: 400;
+    border: none; border-bottom: 1px solid #CCCCCC;
+    padding: 18px;
+}        
+.content {
+    padding: 20px;
+    max-height: max-content;
+}
+
+.btncover {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}        
+.btn {
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+h1{
+    text-align: center;
+}
+h1 a{
+    color:black;
+    text-decoration: none; 
+}
