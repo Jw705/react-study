@@ -51,7 +51,7 @@ function Create(props) {
       <p><input type="text" name="title" placeholder="title"/></p>
       <p>내용</p>
       <p><textarea name="body" placeholder="body"></textarea></p>
-      <p><input type="submit" value="Create"/></p>     
+      <p><input type="submit" value="작성 완료"/></p>     
     </form>
   </article>
 }
@@ -76,7 +76,7 @@ function Update(props) {
       <p><textarea name="body" placeholder="body" value={body} onChange={event=>{
         setBody(event.target.value);
       }}></textarea></p>
-      <p><input type="submit" value="Update"/></p>     
+      <p><input type="submit" value="수정 완료"/></p>     
     </form>
   </article>
 }
@@ -90,17 +90,21 @@ function App() {
   const [nextId, setNextId] = useState(4);
 
   const [topics,setTopics] = useState([
-    {id:1, title:'html', body:'html is...'},
-    {id:2, title:'css', body:'css is...'},
-    {id:3, title:'javascriptss', body:'javascript is...'}
+    {id:1, title:'Apple', body:'사과'},
+    {id:2, title:'Banana', body:'맛있다'}
   ]);
 
   let content = null;
-  // contextControl : 맥락적으로 노출되는 UI
   let contextControl = null;
 
   if(mode==="WELCOME"){
     content = <Article title="Welcome" body="Hello, web"></Article>
+    contextControl = <>
+      <a class="btn" href="/create" onClick={event => {
+        event.preventDefault();
+        setMode('CREATE');
+      }}>글 작성</a>
+    </>
   }
   else if (mode === 'READ') {
     let title, body = null;
@@ -111,23 +115,25 @@ function App() {
       }
     }
     content = <Article title={title} body={body}></Article>
-    //<a class="btn" href="/update?id=${title}">
     contextControl = <>
+      <a class="btn" href="/create" onClick={event => {
+        event.preventDefault();
+        setMode('CREATE');
+      }}>글 작성</a>
       <a class="btn" href={'/update/' + id} onClick={event => {
         event.preventDefault();
         setMode('UPDATE');
       }}>글 수정</a>
-      <input class="btn" type="button" value="글 삭제" onClick={()=>{
+      <input class="btn" type="button" value="글 삭제" onClick={() => {
         const newTopics = []
-        for(let i=0;i<topics.length;i++){
-          if(topics[i].id !== id){
-            // id값이 같지 않은 것만 push (id값이 같은거 빼고 복사됨)
+        for (let i = 0; i < topics.length; i++) {
+          if (topics[i].id !== id) {
             newTopics.push(topics[i]);
           }
         }
         setTopics(newTopics);
         setMode('WELCOME');
-      }}/>
+      }} />
     </>
   }
   else if (mode === 'CREATE') {
@@ -184,10 +190,6 @@ function App() {
         <div class="content">
           {content}
             <div class="btncover">
-              <a class="btn" href="/create" onClick={event => {
-                event.preventDefault();
-                setMode('CREATE');
-              }}>글 작성</a>
               {contextControl}
             </div>
         </div>
