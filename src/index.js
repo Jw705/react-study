@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Accordion2 from './Accordion2';
+import Calendartest from './Calendartest';
 
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Accordion2 />
+    <Calendartest />
   </React.StrictMode>
 );
 
