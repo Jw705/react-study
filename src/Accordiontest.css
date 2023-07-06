@@ -1,0 +1,90 @@
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.active,
+.collapsible:hover {
+  background-color: #555;
+}
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "\2212";
+}
+
+td {
+  width: 50px;
+  height: 50px;
+}
+
+.Calendar {
+  text-align: center;
+}
+
+.Calendar>thead>tr:first-child>td {
+  font-family: 'Questrial', sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.Calendar>thead>tr:last-child>td {
+  font-family: 'Questrial', sans-serif;
+  font-weight: 600;     
+}
+
+.Calendar>tbody>tr>td>p {
+  font-family: 'Montserrat', sans-serif;
+  height: 45px;
+  width: 45px;
+  border-radius: 45px;
+  transition-duration: .2s;
+  line-height: 45px;
+  margin: 2.5px;
+  display: block;
+  text-align: center;
+}        
+
+.pastDay {
+  color: lightgray;
+}
+
+.today {
+  background-color: #F5D042;            
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.futureDay {
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+.futureDay:hover{
+  background:#eee;
+}
+
+.choiceDay {
+  background: #0A174E;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}

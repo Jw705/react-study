@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Calendartest.css';
+//import './Calendartest.css';
 
 // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
 function leftPad(value) {
@@ -11,7 +11,7 @@ function leftPad(value) {
 }
 
 // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
-function Calendar() {
+export default function Calendar() {
 
   const [nowMonth, setMonth] = useState(new Date());  // 현재 달을 페이지를 로드한 날의 달로 초기화
 
@@ -154,14 +154,5 @@ function Calendar() {
         {calendarTable}     
       </tbody>
     </table>
-  );
-}
-
-
-
-
-export default function Calendartest() {
-  return (
-      <Calendar></Calendar>
   );
 }
